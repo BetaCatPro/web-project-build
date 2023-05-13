@@ -1,0 +1,35 @@
+{
+    "name": "web-project-build",
+    "version": "1.0.0",
+    "description": "前端工程化脚手架-用于项目构建和打包",
+    "main": "bin/index.js",
+    "bin": {
+        "web-project-build": "./bin/index.js"
+    },
+    "scripts": {
+        "prepare": "husky install",
+        "format": "prettier --write \"./**/*.{ts,js,json,md}\""
+    },
+    "author": "zjin",
+    "license": "MIT",
+    "keywords": [
+        "CLI",
+        "Web"
+    ],
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "devDependencies": {
+        "@commitlint/config-conventional": "^17.6.3",
+        "commitlint": "^17.6.3",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.3",
+        "prettier": "^2.8.8"
+    },
+    "dependencies": {
+        "commander": "^10.0.1"
+    }
+}
