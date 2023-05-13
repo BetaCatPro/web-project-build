@@ -1,17 +1,35 @@
 #!/usr/bin/env node
+const commander = require('commander')
+const pkg = require('../package.json')
+const checkNode = require('../lib/checkNode')
+const startServer = require('../lib/start/startServer')
+const build = require('../lib/build/build')
 
-const { program } = require('commander')
+const MIN_NODE_VERSION = '14.4.0'
 
-program.option('--first').option('-s, --separator <char>')
+const { program } = commander
 
-program.parse()
+;(async () => {
+    try {
+        if (!checkNode(MIN_NODE_VERSION)) {
+            throw new Error(`Please update node version to ${MIN_NODE_VERSION}`)
+        }
 
-const options = program.opts()
-const limit = options.first ? 1 : undefined
-console.log(program.args[0].split(options.separator, limit))
+        program
+            .command('start')
+            .description('start web-project-build service')
+            .allowUnknownOption()
+            .action(startServer)
 
-// $ node split.js -s / --fits a/b/c
-// error: unknown option '--fits'
-// (Did you mean --first?)
-// $ node split.js -s / --first a/b/c
-//     [ 'a' ]
+        program
+            .command('build')
+            .description('build project')
+            .allowUnknownOption()
+            .action(build)
+
+        program.version(pkg.version)
+        program.parse(process.argv)
+    } catch (e) {
+        console.log(e.message)
+    }
+})()

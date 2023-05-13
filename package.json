@@ -24,12 +24,11 @@
     "devDependencies": {
         "@commitlint/config-conventional": "^17.6.3",
         "commitlint": "^17.6.3",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.3",
         "prettier": "^2.8.8"
     },
     "dependencies": {
-        "commander": "^10.0.1"
+        "commander": "^10.0.1",
+        "semver": "^7.5.1"
     }
 }
