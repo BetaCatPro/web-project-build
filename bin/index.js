@@ -30,13 +30,24 @@ function checkDebug() {
 
         program
             .command('start')
-            .description('start web-project-build service')
+            .option('-c, --config <config>', '配置文件路径')
+            .option('--stop-build', '停止启动服务')
+            .option(
+                '--custom-webpack-path <customWebpackPath>',
+                '自定义webpack路径'
+            )
+            .description('start server by cli-build')
             .allowUnknownOption()
             .action(startServer)
 
         program
             .command('build')
-            .description('build project')
+            .option('-c, --config <config>', '配置文件路径')
+            .option(
+                '--custom-webpack-path <customWebpackPath>',
+                '自定义webpack路径'
+            )
+            .description('build project by cli-build')
             .allowUnknownOption()
             .action(build)
 
