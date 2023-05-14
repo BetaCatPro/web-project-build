@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+checkDebug()
+
 const commander = require('commander')
 const pkg = require('../package.json')
 const checkNode = require('../lib/checkNode')
@@ -8,6 +10,17 @@ const build = require('../lib/build/build')
 const MIN_NODE_VERSION = '14.4.0'
 
 const { program } = commander
+
+function checkDebug() {
+    if (
+        process.argv.indexOf('--debug') >= 0 ||
+        process.argv.indexOf('-d') >= 0
+    ) {
+        process.env.LOG_LEVEL = 'verbose'
+    } else {
+        process.env.LOG_LEVEL = 'info'
+    }
+}
 
 ;(async () => {
     try {
@@ -26,6 +39,8 @@ const { program } = commander
             .description('build project')
             .allowUnknownOption()
             .action(build)
+
+        program.option('-d, --debug', '开启调试模式')
 
         program.version(pkg.version)
         program.parse(process.argv)
