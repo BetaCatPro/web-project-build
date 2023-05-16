@@ -19,12 +19,12 @@ A-->组件库
 
 脚手架提供:
 
--   创建项目
--   项目运行
--   项目框架
--   项目打包
--   项目发布
--   ...
+- 创建项目
+- 项目运行
+- 项目框架
+- 项目打包
+- 项目发布
+- ...
 
 `web-project-build` 项目负责启动及项目打包工作。
 
@@ -33,10 +33,57 @@ A-->组件库
 ### Installation
 
 1. Install NPM packages
+
     ```sh
-    npm install
+    npm install web-project-build
     ```
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+
+```sh
+    web-project-build start
+    web-project-build build
+```
+
+参数:
+
+- -c, --config: <自定义 config 配置文件>
+- --stop-build: 停止启动服务(用于 start 命令)
+- --custom-webpack-path: <自定义 webpack 路径>
+
+**config 文件** wpb.js
+
+```js
+export default {
+    // 入口文件
+    entry: 'src/index.js',
+    // 自定义插件
+    plugins: function () {
+        return [
+            // 1. [插件路径，参数]
+            ['.ugins/cli-build-plugin.js', { a: 1, b: 2 }],
+            //2. 直接定义插件方法
+            function (api, options) {
+                console.log('this is anonymous plugin', options)
+            }
+        ]
+    },
+    // 自定义 Hooks 钩子
+    hooks: [
+        [
+            'start',
+            (context) => {
+                console.log('start', context)
+            }
+        ],
+        [
+            'plugin',
+            (context) => {
+                console.log('testHook', context.webpackConfig?.toConfig())
+            }
+        ]
+    ]
+}
+```
