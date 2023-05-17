@@ -53,7 +53,7 @@ A-->组件库
 - --stop-build: 停止启动服务(用于 start 命令)
 - --custom-webpack-path: <自定义 webpack 路径>
 
-**config 文件** wpb.js
+**config 文件** wpb-config.js
 
 ```js
 export default {
