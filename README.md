@@ -35,7 +35,7 @@ A-->组件库
 1. Install NPM packages
 
     ```sh
-    npm install web-project-build
+    npm install web-project-build -g
     ```
 
 <!-- USAGE EXAMPLES -->
