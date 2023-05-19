@@ -16,6 +16,10 @@
         "CLI",
         "Web"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BetaCatPro/web-project-build"
+    },
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
